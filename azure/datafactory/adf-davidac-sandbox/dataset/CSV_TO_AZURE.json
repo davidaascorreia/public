@@ -1,0 +1,24 @@
+{
+	"name": "CSV_TO_AZURE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FileSystemNOOSLC9VH533",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FileServerLocation",
+				"fileName": "TOAZURE.csv",
+				"folderPath": "Downloads/Reports/Reports"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,301 @@
+{
+	"name": "XML_to_CSV_SQL_2012",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "XmlSource",
+						"storeSettings": {
+							"type": "FileServerReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "XmlReadSettings",
+							"validationMode": "none",
+							"namespaces": true
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "FileServerWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['Workbook']['DocumentProperties']['Author']"
+								},
+								"sink": {
+									"name": "DocumentPropertiesAuthor",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Workbook']['DocumentProperties']['LastAuthor']"
+								},
+								"sink": {
+									"name": "DocumentPropertiesLastAuthor",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Workbook']['DocumentProperties']['Created']"
+								},
+								"sink": {
+									"name": "DocumentPropertiesCreated",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Workbook']['DocumentProperties']['Company']"
+								},
+								"sink": {
+									"name": "DocumentPropertiesCompany",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Workbook']['DocumentProperties']['Version']"
+								},
+								"sink": {
+									"name": "DocumentPropertiesVersion",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Workbook']['ExcelWorkbook']['WindowHeight']"
+								},
+								"sink": {
+									"name": "ExcelWorkbookWindowHeight",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Workbook']['ExcelWorkbook']['WindowWidth']"
+								},
+								"sink": {
+									"name": "ExcelWorkbookWindowWidth",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Workbook']['ExcelWorkbook']['WindowTopX']"
+								},
+								"sink": {
+									"name": "ExcelWorkbookWindowTopX",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Workbook']['ExcelWorkbook']['WindowTopY']"
+								},
+								"sink": {
+									"name": "ExcelWorkbookDocumentPropertiesVersion",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Workbook']['ExcelWorkbook']['ProtectStructure']"
+								},
+								"sink": {
+									"name": "ExcelWorkbookProtectStructure",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Workbook']['ExcelWorkbook']['ProtectWindows']"
+								},
+								"sink": {
+									"name": "ProtectWindows",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Workbook']['Styles']['Style'][0]['Alignment']['ss:@Vertical']"
+								},
+								"sink": {
+									"name": "Alignmentss:@Vertical",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Workbook']['Styles']['Style'][0]['Borders']"
+								},
+								"sink": {
+									"name": "StyleBorders",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Workbook']['Styles']['Style'][0]['Font']['x:@CharSet']"
+								},
+								"sink": {
+									"name": "Fontx:@CharSet",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Workbook']['Styles']['Style'][0]['Interior']"
+								},
+								"sink": {
+									"name": "StyleInterior",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Workbook']['Styles']['Style'][0]['NumberFormat']"
+								},
+								"sink": {
+									"name": "StyleNumberFormat",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Workbook']['Styles']['Style'][0]['Protection']"
+								},
+								"sink": {
+									"name": "StyleProtection",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Workbook']['Styles']['Style'][0]['ss:@ID']"
+								},
+								"sink": {
+									"name": "Styless:@ID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Workbook']['Styles']['Style'][0]['ss:@Name']"
+								},
+								"sink": {
+									"name": "Styless:@Name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Cell']['Data']['ss:@Type']"
+								},
+								"sink": {
+									"name": "Worksheetss:@Type",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Cell']['Data']['_value_']"
+								},
+								"sink": {
+									"name": "Worksheet_value_",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Workbook']['Worksheet'][0]['Table']['ss:@ExpandedColumnCount']"
+								},
+								"sink": {
+									"name": "WorksheetStyless:@Name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Workbook']['Worksheet'][0]['Table']['ss:@ExpandedRowCount']"
+								},
+								"sink": {
+									"name": "Worksheetss:@ExpandedRowCount",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Workbook']['Worksheet'][0]['Table']['x:@FullColumns']"
+								},
+								"sink": {
+									"name": "Worksheetx:@FullColumns",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Workbook']['Worksheet'][0]['Table']['x:@FullRows']"
+								},
+								"sink": {
+									"name": "Worksheetx:@FullRows",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Workbook']['Worksheet'][0]['ss:@Name']"
+								},
+								"sink": {
+									"name": "Worksheetss:@Name",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['Workbook']['Worksheet'][0]['Table']['Row']"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "TO_SQL_2012",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "CSV_TO_SQL_2012",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2020-12-07T10:20:34Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

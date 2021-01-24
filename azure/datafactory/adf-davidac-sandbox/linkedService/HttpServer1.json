@@ -1,0 +1,15 @@
+{
+	"name": "HttpServer1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://crayon.sharepoint.com/:x:/r/sites/azuredatausergroup",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Windows",
+			"userName": "david.aas.correia@inmeta.no",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkFERi1EQVZJREFDLVNBTkRCT1hfM2I4ZjA2YWQtZTg0YS00ZTg1LWJkNjMtODQ2MWE2YmMwOTdmIg0KfQ=="
+		}
+	}
+}
