@@ -1,0 +1,32 @@
+{
+	"name": "TXT_list",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FileSystemNOOSLC9VH533",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "NOOSLC9VH533"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FileServerLocation",
+				"fileName": "list.txt",
+				"folderPath": "Desktop"
+			},
+			"columnDelimiter": ";",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "\"id\";\"title\";\"tags\";\"statisticURI\";\"datasetURI\";\"jsonURI\";\"csvURI\"",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
