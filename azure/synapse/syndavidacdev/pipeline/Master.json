@@ -24,6 +24,32 @@
 						}
 					}
 				}
+			},
+			{
+				"name": "Load and Transform",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Extract",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Load and Transform year",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"ArrayYear": {
+							"value": "@pipeline().parameters.ArrayYear",
+							"type": "Expression"
+						}
+					}
+				}
 			}
 		],
 		"parameters": {

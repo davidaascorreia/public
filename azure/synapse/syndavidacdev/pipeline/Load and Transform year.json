@@ -1,0 +1,79 @@
+{
+	"name": "Load and Transform year",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.ArrayYear",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Execute Load and Transform",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "Set year",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "Load and Transform",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": false,
+								"parameters": {
+									"Year": {
+										"value": "@item()",
+										"type": "Expression"
+									}
+								}
+							}
+						},
+						{
+							"name": "Set year",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "Year",
+								"value": {
+									"value": "@item()",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"ArrayYear": {
+				"type": "array",
+				"defaultValue": [
+					"2020"
+				]
+			}
+		},
+		"variables": {
+			"Year": {
+				"type": "String",
+				"defaultValue": "2020"
+			}
+		},
+		"folder": {
+			"name": "02"
+		},
+		"annotations": []
+	}
+}

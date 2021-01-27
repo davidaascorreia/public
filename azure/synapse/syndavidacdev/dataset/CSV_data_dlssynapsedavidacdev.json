@@ -1,0 +1,22 @@
+{
+	"name": "CSV_data_dlssynapsedavidacdev",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dlsdavidacsynapsedev",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "data"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

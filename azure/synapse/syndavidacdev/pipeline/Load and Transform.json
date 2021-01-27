@@ -1,0 +1,47 @@
+{
+	"name": "Load and Transform",
+	"properties": {
+		"activities": [
+			{
+				"name": "Load and Transform",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "Load and Transform NYCTLC",
+						"type": "DataFlowReference",
+						"parameters": {
+							"Year": {
+								"value": "'@{pipeline().parameters.Year}'",
+								"type": "Expression"
+							}
+						}
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			}
+		],
+		"parameters": {
+			"Year": {
+				"type": "string",
+				"defaultValue": "2020"
+			}
+		},
+		"folder": {
+			"name": "03"
+		},
+		"annotations": []
+	}
+}

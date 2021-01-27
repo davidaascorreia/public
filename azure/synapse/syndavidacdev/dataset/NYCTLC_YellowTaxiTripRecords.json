@@ -1,0 +1,102 @@
+{
+	"name": "NYCTLC_YellowTaxiTripRecords",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SQLPool01"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "VendorID",
+				"type": "char"
+			},
+			{
+				"name": "Pickup_Datetime",
+				"type": "datetime2",
+				"scale": 0
+			},
+			{
+				"name": "Dropoff_Datetime",
+				"type": "datetime2",
+				"scale": 0
+			},
+			{
+				"name": "PassengerCount",
+				"type": "varchar"
+			},
+			{
+				"name": "TripDistance",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "PickupLocationID",
+				"type": "varchar"
+			},
+			{
+				"name": "PickupBorough",
+				"type": "varchar"
+			},
+			{
+				"name": "PickupZone",
+				"type": "varchar"
+			},
+			{
+				"name": "PaymentType",
+				"type": "varchar"
+			},
+			{
+				"name": "FareAmount",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "ExtraAmount",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "MtaTaxAmount",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "TipAmount",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "TollsAmount",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "ImprovementSurchargeAmount",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "TotalAmount",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			}
+		],
+		"typeProperties": {
+			"schema": "nyctlc",
+			"table": "YellowTaxiTripRecords"
+		}
+	}
+}
