@@ -2,7 +2,7 @@ Step-by-step: End to end analytics in Synapse
 
 1. Environment setup
 
-1a: Create a new resource group
+1a: Create a new resource group <br />
 1b: Create Azure Synapse Analytics workspace
     - Set ADLS as account (Basics)
     - Set default as file system name (Basics)
