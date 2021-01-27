@@ -1,0 +1,22 @@
+{
+	"name": "dlsdavidacsynapsedev",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://dlsdavidacsynapsedev.dfs.core.windows.net/",
+			"accountKey": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "kvdavidacdev",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "dlsdavidacsynapsedev-key1"
+			}
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
