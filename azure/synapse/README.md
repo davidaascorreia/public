@@ -17,5 +17,11 @@ Step-by-step: End to end analytics in Synapse
 1g: Ensure you have Owner role on the Synapse Workspace <br />
 1h: Create secret for ADLS access key (Key1) and for the password of the SQL Admin <br />
 
-2. Synapse setup
+2. Configuring initial Synapse environment
+
+2a: Set up Git configuration
+2a: Create linked service for NYCTLC trip data
+    - Base url: https://s3.amazonaws.com/nyc-tlc/ 
+
+
 
