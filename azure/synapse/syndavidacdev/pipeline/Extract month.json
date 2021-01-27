@@ -12,7 +12,7 @@
 						"value": "@pipeline().parameters.ArrayMonth",
 						"type": "Expression"
 					},
-					"batchCount": 40,
+					"isSequential": true,
 					"activities": [
 						{
 							"name": "Set relativeUrl",

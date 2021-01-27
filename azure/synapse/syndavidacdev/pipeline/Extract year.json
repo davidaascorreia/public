@@ -12,8 +12,7 @@
 						"value": "@pipeline().parameters.ArrayYear",
 						"type": "Expression"
 					},
-					"isSequential": false,
-					"batchCount": 20,
+					"isSequential": true,
 					"activities": [
 						{
 							"name": "Execute Extract Month",
