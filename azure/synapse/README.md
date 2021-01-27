@@ -20,8 +20,14 @@ Step-by-step: End to end analytics in Synapse
 2. Configuring initial Synapse environment
 
 2a: Set up Git configuration <br />
-2a: Create linked service for NYCTLC trip data <br />
+2b: Create linked service for NYCTLC trip data <br />
     - Base url: https://s3.amazonaws.com/nyc-tlc/ <br />
+2c: Set up Azure Key Vault linked servicekv <br />
+2d: Set up adls dataset <br />
+    - Parameters: *directory* and *file* <br />
+2e: Set up nyctlc dataset <br />
+    - Parameters: *relativeUrl* <br />
+2f: Group datasets in folder "Parameterized" <br />
 
 
 
