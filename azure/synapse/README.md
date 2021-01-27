@@ -29,5 +29,9 @@ Step-by-step: End to end analytics in Synapse
     - Parameters: *relativeUrl* <br />
 2f: Group datasets in folder "Parameterized" <br />
 
+3. Setting up some initial pipelines
+
+
+
 
 
