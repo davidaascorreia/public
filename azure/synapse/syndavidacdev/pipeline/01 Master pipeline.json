@@ -1,0 +1,36 @@
+{
+	"name": "01 Master pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Extract",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Transform",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Extract",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "01"
+		},
+		"annotations": []
+	}
+}
