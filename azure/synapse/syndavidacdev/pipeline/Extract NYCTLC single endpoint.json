@@ -70,7 +70,7 @@
 			},
 			"directory": {
 				"type": "string",
-				"defaultValue": "nyctlc/misc"
+				"defaultValue": "raw/nyctlc/misc"
 			},
 			"file": {
 				"type": "string",
