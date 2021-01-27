@@ -1,0 +1,23 @@
+{
+	"name": "AzureSynapseAnalytics1",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDW",
+		"typeProperties": {
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=syndavidacdev.sql.azuresynapse.net;Initial Catalog=SQLPool01;User ID=sqladminuser",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "kvdavidacdev",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "sqladminuser-password"
+			}
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
