@@ -19,9 +19,9 @@ Step-by-step: End to end analytics in Synapse
 
 2. Configuring initial Synapse environment
 
-2a: Set up Git configuration
-2a: Create linked service for NYCTLC trip data
-    - Base url: https://s3.amazonaws.com/nyc-tlc/ 
+2a: Set up Git configuration <br />
+2a: Create linked service for NYCTLC trip data <br />
+    - Base url: https://s3.amazonaws.com/nyc-tlc/ <br />
 
 
 
