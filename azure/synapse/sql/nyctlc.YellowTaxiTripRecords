@@ -1,0 +1,19 @@
+CREATE TABLE [nyctlc].[SummaryYellowTaxiTripRecords]
+( 
+    [TripDate] [date]  NULL,
+    [PickupBorough] [varchar](25)  NULL,
+    [PickupZone] [varchar](50)  NULL,
+    [DropoffBorough] [varchar](25)  NULL,
+    [DropoffZone] [varchar](50)  NULL,
+    [TotalTripCount] [int]  NULL,
+    [TotalPassengerCount] [int]  NULL,
+    [TotalDistanceTravelled] [decimal](18,2)  NULL,
+    [TotalFareAmount] [decimal](18,2)  NULL,
+    [TotalTipAmount] [decimal](18,2)  NULL,
+    [TotalTripAmount] [decimal](18,2)  NULL
+)
+WITH
+(
+    DISTRIBUTION = ROUND_ROBIN,
+    CLUSTERED COLUMNSTORE INDEX
+)
