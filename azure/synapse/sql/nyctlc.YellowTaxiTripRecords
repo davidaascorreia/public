@@ -8,11 +8,11 @@ CREATE TABLE [nyctlc].[YellowTaxiTripRecords]
     -- excluded [RatecodeID] char(1)  NULL, --The final rate code in effect at the end of the trip. 1= Standard rate, 2=JFK, 3=Newark, 4=Nassau or Westchester, 5=Negotiated fare, 6=Group ride
     -- excluded [store_and_fwd_flag], -- This flag indicates whether the trip record was held in vehicle memory before sending to the vendor, aka “store and forward,” because the vehicle did not have a connection to the server. Y= store and forward trip, N= not a store and forward trip
     [PickupLocationID] varchar(5)  NULL, --TLC Taxi Zone in which the taximeter was engaged
-    [DropoffLocationID] varchar(5)  NULL, --TLC Taxi Zone in which the taximeter was disengaged
+    --[DropoffLocationID] varchar(5)  NULL, --TLC Taxi Zone in which the taximeter was disengaged
     [PickupBorough] varchar(50) NULL, --borough, from lookup table
     [PickupZone] varchar(100) NULL, --zone, from lookup table
-    [DropoffBorough] varchar(50) NULL, --borough, from lookup table
-    [DropoffZone] varchar(100) NULL, --zone, from lookup table 
+    --[DropoffBorough] varchar(50) NULL, --borough, from lookup table
+    --[DropoffZone] varchar(100) NULL, --zone, from lookup table 
     [PaymentType] varchar(50)  NULL, --A numeric code signifying how the passenger paid for the trip. 1= Credit card, 2= Cash, 3= No charge, 4= Dispute, 5= Unknown, 6= Voided trip
     [FareAmount] DECIMAL(10,2)  NULL, --The time-and-distance fare calculated by the meter.
     [ExtraAmount] DECIMAL(10,2)  NULL, --Miscellaneous extras and surcharges. Currently, this only includes the $0.50 and $1 rush hour and overnight charges.
