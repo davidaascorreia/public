@@ -13,6 +13,9 @@
 				"type": "string"
 			}
 		},
+		"folder": {
+			"name": "Parameterized"
+		},
 		"annotations": [],
 		"type": "Binary",
 		"typeProperties": {

@@ -1,0 +1,28 @@
+{
+	"name": "http_nyctlc",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "nyctlc",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"relativeUrl": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "Parameterized"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "@dataset().relativeUrl",
+					"type": "Expression"
+				}
+			}
+		}
+	}
+}
