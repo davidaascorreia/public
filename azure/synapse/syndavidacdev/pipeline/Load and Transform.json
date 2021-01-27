@@ -25,8 +25,15 @@
 							}
 						}
 					},
+					"staging": {
+						"linkedService": {
+							"referenceName": "dlsdavidacsynapsedev",
+							"type": "LinkedServiceReference"
+						},
+						"folderPath": "data/staging"
+					},
 					"compute": {
-						"coreCount": 8,
+						"coreCount": 32,
 						"computeType": "General"
 					},
 					"traceLevel": "Fine"
