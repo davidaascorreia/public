@@ -1,42 +1,60 @@
 {
-	"name": "Load and Transform",
+	"name": "Load and Transform Month",
 	"properties": {
 		"activities": [
 			{
-				"name": "Load and Transform",
-				"type": "ExecuteDataFlow",
+				"name": "ForEach Month",
+				"type": "ForEach",
 				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
 				"userProperties": [],
 				"typeProperties": {
-					"dataflow": {
-						"referenceName": "Load and Transform NYCTLC",
-						"type": "DataFlowReference",
-						"parameters": {
-							"Year": {
-								"value": "'@{pipeline().parameters.Year}'",
-								"type": "Expression"
+					"items": {
+						"value": "@pipeline().parameters.ArrayMonth",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Load and Transform NYCTLC",
+							"type": "ExecuteDataFlow",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataflow": {
+									"referenceName": "Load and Transform NYCTLC",
+									"type": "DataFlowReference",
+									"parameters": {
+										"Year": {
+											"value": "'@{pipeline().parameters.Year}'",
+											"type": "Expression"
+										},
+										"Month": {
+											"value": "'@{item()}'",
+											"type": "Expression"
+										}
+									}
+								},
+								"staging": {
+									"linkedService": {
+										"referenceName": "dlsdavidacsynapsedev",
+										"type": "LinkedServiceReference"
+									},
+									"folderPath": "data/staging"
+								},
+								"compute": {
+									"coreCount": 32,
+									"computeType": "General"
+								},
+								"traceLevel": "Fine"
 							}
 						}
-					},
-					"staging": {
-						"linkedService": {
-							"referenceName": "dlsdavidacsynapsedev",
-							"type": "LinkedServiceReference"
-						},
-						"folderPath": "data/staging"
-					},
-					"compute": {
-						"coreCount": 48,
-						"computeType": "General"
-					},
-					"traceLevel": "Fine"
+					]
 				}
 			}
 		],
@@ -44,6 +62,23 @@
 			"Year": {
 				"type": "string",
 				"defaultValue": "2020"
+			},
+			"ArrayMonth": {
+				"type": "array",
+				"defaultValue": [
+					"01",
+					"02",
+					"03",
+					"04",
+					"05",
+					"06",
+					"07",
+					"08",
+					"09",
+					"10",
+					"11",
+					"12"
+				]
 			}
 		},
 		"folder": {
