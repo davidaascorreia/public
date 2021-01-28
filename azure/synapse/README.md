@@ -1,5 +1,7 @@
 Step-by-step: End to end analytics in Synapse (*under development)
 
+</br>
+
 **1. Environment setup**
 
 1a: Create a new resource group
@@ -24,6 +26,8 @@ Step-by-step: End to end analytics in Synapse (*under development)
 
 1h: Create secret for ADLS access key (Key1) and for the password of the SQL Admin
 
+</br>
+
 **2. Configuring initial Synapse environment**
 
 2a: Set up Git configuration
@@ -40,6 +44,8 @@ Step-by-step: End to end analytics in Synapse (*under development)
  - Parameters: *relativeUrl*
 
 2f: Group datasets in folder "Parameterized"
+
+</br>
 
 **3. Setting up some initial extract pipelines**
 
@@ -93,6 +99,8 @@ Step-by-step: End to end analytics in Synapse (*under development)
 
 4k. Set staging linked service and staging storage folder in *Settings* for Data Flow (data/staging) and set wanted Core Count
 
+</br>
+
 **5. Building the data flow**
 
 5a. Add Year as parameter, add this parameter to the data flow in the pipeline.
@@ -135,6 +143,8 @@ Step-by-step: End to end analytics in Synapse (*under development)
 
 5g. Sink - YellowTaxiTripRecords Synapse SQL dataset (preview data to ensure everything is alright)
 
+</br>
+
 **Bonus exercises (before last tasks on Power BI)**
 
 5h. SelectAggData
@@ -164,6 +174,8 @@ Step-by-step: End to end analytics in Synapse (*under development)
  5k. Sink - SummaryYellowTaxiTripRecords dataset
 
  5l. Publish and run master pipeline for wanted timeframe
+
+</br>
 
  **6. Connecting Power BI and creating a simple report**
 
