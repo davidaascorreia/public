@@ -91,13 +91,15 @@ Step-by-step: End to end analytics in Synapse (*under development)
 
 4g. Create ADLS dataset CSV for trip records and lookup table and add them to a folder NYCTLC *storage account name*
 
-4h. Add an activity in *Master* (01); "Load and Transform"
+4h. Add an activity in *Master* (01); "Load and Transform" with parameters ArrayYear and ArrayMonth
 
-4i. Add a new pipeline *Load and Transform Year* (02) and add parameter ArrayYear. Add ForEach actvity and add Execute Pipeline inside with current item as parameter value
+4i. Add a new pipeline *Load and Transform Year* (02) and add parameters ArrayYear (Array) and ArrayMonth (Array). Add ForEach actvity and add Execute Pipeline inside with current item as parameter value and ArrayMonth
 
-4j. Add a new pipeline *Load and Transform* with parameter Year (String) and add a mapping data flow inside. Initiate data flow debug
+4j. Add a new pipeline *Load and Transform* with parameter Year (String) and ArrayMonth (Array), add a ForEach activity for each month, and add a mapping data flow inside that uses Year and current month as parameters. Initiate data flow debug
 
-4k. Set staging linked service and staging storage folder in *Settings* for Data Flow (data/staging) and set wanted Core Count
+4k. Create a new Azure Integration Runtime with 16 cores
+
+4k. Assign the newly create Azure IR to the data flow, allow jobs to run in parallel, and set staging linked service and staging storage folder in *Settings* for Data Flow (data/staging) and set wanted Core Count
 
 </br>
 
@@ -105,7 +107,7 @@ Step-by-step: End to end analytics in Synapse (*under development)
 
 5a. Add Year as parameter, add this parameter to the data flow in the pipeline.
 
-5b. Two csv source inputs. In YellowTaxiTripRecords.csv add a wildcard path concat('raw/nyctlc/tripdata/', $Year, '/*/*.csv'). For the lookup table use the direct path raw/nyctlc/misc/taxi+_zone_lookup.csv
+5b. Two csv source inputs. In YellowTaxiTripRecords.csv add a wildcard path concat('raw/nyctlc/tripdata/', $Year, '/', $Month, '/*.csv'). For the lookup table use the direct path raw/nyctlc/misc/taxi+_zone_lookup.csv
 
 5c. Set all input values to string type
 
@@ -183,7 +185,7 @@ Step-by-step: End to end analytics in Synapse (*under development)
 
  6b. Create a new Power BI dataset on SQLPool01 from Synapse Studio, and download the .pbids file provided. Open the file in Power BI Desktop.
 
- 6c. Enter credentials, choose DirectQuery, save the file, and publish it to your wanted Power BI workspace.
+ 6c. Enter credentials, choose DirectQuery (create Year and Month column), save the file, and publish it to your wanted Power BI workspace.
 
  6d. Go to app.powerbi.com. Log in, go to the workspace you published the dataset, find the dataset, go to settings, update data source credentialsby using OAuth2 and use your account.
 
