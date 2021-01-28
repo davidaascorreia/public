@@ -24,22 +24,6 @@
 						}
 					}
 				}
-			},
-			{
-				"name": "Load and Transform",
-				"type": "ExecutePipeline",
-				"dependsOn": [
-					{
-						"activity": "Extract",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"waitOnCompletion": true
-				}
 			}
 		],
 		"parameters": {
