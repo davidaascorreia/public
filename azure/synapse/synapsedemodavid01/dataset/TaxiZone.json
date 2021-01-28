@@ -1,0 +1,41 @@
+{
+	"name": "TaxiZone",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "dlssynapsedemodavid",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "taxi+_zone_lookup.csv",
+				"folderPath": "raw/nyctlc/misc",
+				"fileSystem": "data"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "LocationID",
+				"type": "String"
+			},
+			{
+				"name": "Borough",
+				"type": "String"
+			},
+			{
+				"name": "Zone",
+				"type": "String"
+			},
+			{
+				"name": "service_zone",
+				"type": "String"
+			}
+		]
+	}
+}
