@@ -67,6 +67,7 @@ Step-by-step: End to end analytics in Synapse (*under development)
 
 3l. Publish and trigger for the wanted periods.
 
+
 **4. Preparing the load and transform stage**
 
 4a. Create schema nyctlc in SQLPool01
