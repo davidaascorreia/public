@@ -33,7 +33,7 @@
 						"folderPath": "data/staging"
 					},
 					"compute": {
-						"coreCount": 32,
+						"coreCount": 48,
 						"computeType": "General"
 					},
 					"traceLevel": "Fine"
