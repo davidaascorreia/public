@@ -47,6 +47,10 @@
 						"ArrayYear": {
 							"value": "@pipeline().parameters.ArrayYear",
 							"type": "Expression"
+						},
+						"ArrayMonth": {
+							"value": "@pipeline().parameters.ArrayMonth",
+							"type": "Expression"
 						}
 					}
 				}

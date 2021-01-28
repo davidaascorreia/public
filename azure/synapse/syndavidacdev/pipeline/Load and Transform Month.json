@@ -47,11 +47,12 @@
 									},
 									"folderPath": "data/staging"
 								},
-								"compute": {
-									"coreCount": 32,
-									"computeType": "General"
+								"integrationRuntime": {
+									"referenceName": "AzureIR",
+									"type": "IntegrationRuntimeReference"
 								},
-								"traceLevel": "Fine"
+								"traceLevel": "Fine",
+								"runConcurrently": true
 							}
 						}
 					]
