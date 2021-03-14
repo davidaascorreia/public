@@ -4,3 +4,4 @@ Overview:
 1. [Azure](https://github.com/davidaascorreia/public/tree/master/azure)
     1. [Data Factory](https://github.com/davidaascorreia/public/tree/master/azure/datafactory)
     2. [Synapse](https://github.com/davidaascorreia/public/tree/master/azure/synapse)
+2. [Other](https://github.com/davidaascorreia/public/tree/master/other)
