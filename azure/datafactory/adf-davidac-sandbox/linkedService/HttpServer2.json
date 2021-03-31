@@ -1,0 +1,12 @@
+{
+	"name": "HttpServer2",
+	"properties": {
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://crayon.sharepoint.com/sites/azuredatausergroup/_api/web/GetFileByServerRelativeUrl('sites/azuredatausergroup/Shared Documents/Møte 7 - Azure Data User Group')/$value",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
