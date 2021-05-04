@@ -1,0 +1,126 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-davidac-sandbox"
+		},
+		"DlsGen2Dsasandboxdavid_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'DlsGen2Dsasandboxdavid'"
+		},
+		"HttpServer1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'HttpServer1'"
+		},
+		"SharePointOnlineList1_servicePrincipalKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'servicePrincipalKey' of 'SharePointOnlineList1'"
+		},
+		"stdavidacsandbox001_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'stdavidacsandbox001'"
+		},
+		"DlsGen2Dsasandboxdavid_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://dlasandboxdavid.dfs.core.windows.net"
+		},
+		"FileSystemNOOSLC9VH533_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "C:\\Users\\davcorre\\"
+		},
+		"FileSystemNOOSLC9VH533_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "david.aas.correia@inmeta.no"
+		},
+		"HttpServer1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://crayon.sharepoint.com/:x:/r/sites/azuredatausergroup"
+		},
+		"HttpServer1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "david.aas.correia@inmeta.no"
+		},
+		"HttpServer2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://crayon.sharepoint.com/sites/azuredatausergroup/_api/web/GetFileByServerRelativeUrl('/General/Q&A - Alteryx.pdf)/$value"
+		},
+		"KeyVaultSandbox_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://kv-davidac-sandbox.vault.azure.net/"
+		},
+		"SharePointOnlineList1_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "74ebfe6d-38e2-4a38-a641-b98ba0139500"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adf-davidac-sandbox_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"DlsGen2Dsasandboxdavid_accountKey": {
+						"value": "[parameters('DlsGen2Dsasandboxdavid_accountKey')]"
+					},
+					"HttpServer1_password": {
+						"value": "[parameters('HttpServer1_password')]"
+					},
+					"SharePointOnlineList1_servicePrincipalKey": {
+						"value": "[parameters('SharePointOnlineList1_servicePrincipalKey')]"
+					},
+					"stdavidacsandbox001_connectionString": {
+						"value": "[parameters('stdavidacsandbox001_connectionString')]"
+					},
+					"DlsGen2Dsasandboxdavid_properties_typeProperties_url": {
+						"value": "[parameters('DlsGen2Dsasandboxdavid_properties_typeProperties_url')]"
+					},
+					"HttpServer1_properties_typeProperties_url": {
+						"value": "[parameters('HttpServer1_properties_typeProperties_url')]"
+					},
+					"HttpServer1_properties_typeProperties_userName": {
+						"value": "[parameters('HttpServer1_properties_typeProperties_userName')]"
+					},
+					"KeyVaultSandbox_properties_typeProperties_baseUrl": {
+						"value": "[parameters('KeyVaultSandbox_properties_typeProperties_baseUrl')]"
+					},
+					"SharePointOnlineList1_properties_typeProperties_servicePrincipalId": {
+						"value": "[parameters('SharePointOnlineList1_properties_typeProperties_servicePrincipalId')]"
+					},
+					"FileSystemNOOSLC9VH533_properties_typeProperties_host": {
+						"value": "[parameters('FileSystemNOOSLC9VH533_properties_typeProperties_host')]"
+					},
+					"FileSystemNOOSLC9VH533_properties_typeProperties_userId": {
+						"value": "[parameters('FileSystemNOOSLC9VH533_properties_typeProperties_userId')]"
+					},
+					"HttpServer2_properties_typeProperties_url": {
+						"value": "[parameters('HttpServer2_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

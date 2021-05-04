@@ -1,0 +1,1279 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-davidac-sandbox"
+		},
+		"DlsGen2Dsasandboxdavid_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'DlsGen2Dsasandboxdavid'"
+		},
+		"HttpServer1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'HttpServer1'"
+		},
+		"SharePointOnlineList1_servicePrincipalKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'servicePrincipalKey' of 'SharePointOnlineList1'"
+		},
+		"stdavidacsandbox001_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'stdavidacsandbox001'"
+		},
+		"DlsGen2Dsasandboxdavid_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://dlasandboxdavid.dfs.core.windows.net"
+		},
+		"HttpServer1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://crayon.sharepoint.com/:x:/r/sites/azuredatausergroup"
+		},
+		"HttpServer1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "david.aas.correia@inmeta.no"
+		},
+		"KeyVaultSandbox_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://kv-davidac-sandbox.vault.azure.net/"
+		},
+		"SharePointOnlineList1_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "74ebfe6d-38e2-4a38-a641-b98ba0139500"
+		},
+		"FileSystemNOOSLC9VH533_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "C:\\Users\\davcorre\\"
+		},
+		"FileSystemNOOSLC9VH533_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "david.aas.correia@inmeta.no"
+		},
+		"HttpServer2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://crayon.sharepoint.com/sites/azuredatausergroup/_api/web/GetFileByServerRelativeUrl('/General/Q&A - Alteryx.pdf)/$value"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/DlsGen2Dsasandboxdavid')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('DlsGen2Dsasandboxdavid_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('DlsGen2Dsasandboxdavid_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/HttpServer1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "HttpServer",
+				"typeProperties": {
+					"url": "[parameters('HttpServer1_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Windows",
+					"userName": "[parameters('HttpServer1_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('HttpServer1_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/KeyVaultSandbox')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('KeyVaultSandbox_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SharePointOnlineList1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SharePointOnlineList",
+				"typeProperties": {
+					"siteUrl": "https://crayon.sharepoint.com/sites/azuredatausergroup",
+					"tenantId": "8f47ad71-44ca-48bf-afe3-56b9360a4495",
+					"servicePrincipalId": "[parameters('SharePointOnlineList1_properties_typeProperties_servicePrincipalId')]",
+					"servicePrincipalKey": {
+						"type": "SecureString",
+						"value": "[parameters('SharePointOnlineList1_servicePrincipalKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/stdavidacsandbox001')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('stdavidacsandbox001_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ir-NOOSLC9VH533-adf-davidac-sandbox')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BLOB_list')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "stdavidacsandbox001",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "adf-container-001"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "list.txt",
+						"container": "adf-container-001"
+					},
+					"columnDelimiter": ";",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/stdavidacsandbox001')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Binary2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DlsGen2Dsasandboxdavid",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "test.pdf",
+						"folderPath": "raw",
+						"fileSystem": "data"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DlsGen2Dsasandboxdavid')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/FileSystemNOOSLC9VH533')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "FileServer",
+				"typeProperties": {
+					"host": "[parameters('FileSystemNOOSLC9VH533_properties_typeProperties_host')]",
+					"userId": "[parameters('FileSystemNOOSLC9VH533_properties_typeProperties_userId')]",
+					"password": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "KeyVaultSandbox",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "NOOSLC9VH533-davcorre"
+					}
+				},
+				"connectVia": {
+					"referenceName": "ir-NOOSLC9VH533-adf-davidac-sandbox",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/ir-NOOSLC9VH533-adf-davidac-sandbox')]",
+				"[concat(variables('factoryId'), '/linkedServices/KeyVaultSandbox')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/HttpServer2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "HttpServer",
+				"typeProperties": {
+					"url": "[parameters('HttpServer2_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous",
+					"authHeaders": {
+						"Authorization": {
+							"type": "AzureKeyVaultSecret",
+							"store": {
+								"referenceName": "KeyVaultSandbox",
+								"type": "LinkedServiceReference"
+							},
+							"secretName": "AccessTokenCrayonSharepoint"
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/KeyVaultSandbox')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Binary1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "HttpServer2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "HttpServerLocation"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/HttpServer2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CSV_TO_AZURE')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "FileSystemNOOSLC9VH533",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "FileServerLocation",
+						"fileName": "TOAZURE.csv",
+						"folderPath": "Downloads/Reports/Reports"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/FileSystemNOOSLC9VH533')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CSV_TO_SQL_2012')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "FileSystemNOOSLC9VH533",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "FileServerLocation",
+						"fileName": "TOSQL2012.csv",
+						"folderPath": "Downloads/Reports/Reports"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/FileSystemNOOSLC9VH533')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TO_AZURE')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "FileSystemNOOSLC9VH533",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "eXtra - migration assessment"
+				},
+				"annotations": [],
+				"type": "Xml",
+				"typeProperties": {
+					"location": {
+						"type": "FileServerLocation",
+						"fileName": "report.xml",
+						"folderPath": "Downloads/Reports/Reports/TO_AZURE"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/FileSystemNOOSLC9VH533')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TO_SQL_2012')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "FileSystemNOOSLC9VH533",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "eXtra - migration assessment"
+				},
+				"annotations": [],
+				"type": "Xml",
+				"typeProperties": {
+					"location": {
+						"type": "FileServerLocation",
+						"fileName": "report.xml",
+						"folderPath": "Downloads/Reports/Reports/TO_SQL_2012"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/FileSystemNOOSLC9VH533')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TXT_list')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "FileSystemNOOSLC9VH533",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "NOOSLC9VH533"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "FileServerLocation",
+						"fileName": "list.txt",
+						"folderPath": "Desktop"
+					},
+					"columnDelimiter": ";",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "\"id\";\"title\";\"tags\";\"statisticURI\";\"datasetURI\";\"jsonURI\";\"csvURI\"",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/FileSystemNOOSLC9VH533')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Test copy data hybrid')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Local to blob container",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "FileServerReadSettings",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings",
+									"copyBehavior": "MergeFiles"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "id",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"type": "String",
+											"physicalType": "String",
+											"ordinal": 1
+										}
+									},
+									{
+										"source": {
+											"name": "title",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"type": "String",
+											"physicalType": "String",
+											"ordinal": 2
+										}
+									},
+									{
+										"source": {
+											"name": "tags",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"type": "String",
+											"physicalType": "String",
+											"ordinal": 3
+										}
+									},
+									{
+										"source": {
+											"name": "statisticURI",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"type": "String",
+											"physicalType": "String",
+											"ordinal": 4
+										}
+									},
+									{
+										"source": {
+											"name": "datasetURI",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"type": "String",
+											"physicalType": "String",
+											"ordinal": 5
+										}
+									},
+									{
+										"source": {
+											"name": "jsonURI",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"type": "String",
+											"physicalType": "String",
+											"ordinal": 6
+										}
+									},
+									{
+										"source": {
+											"name": "csvURI",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"type": "String",
+											"physicalType": "String",
+											"ordinal": 7
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "TXT_list",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "BLOB_list",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2020-07-14T08:19:49Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/TXT_list')]",
+				"[concat(variables('factoryId'), '/datasets/BLOB_list')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Test sharepoint')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "GetBearerToken",
+						"type": "WebActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": true,
+							"secureInput": true
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": "https://accounts.accesscontrol.windows.net/8f47ad71-44ca-48bf-afe3-56b9360a4495/tokens/OAuth/2",
+							"method": "POST",
+							"headers": {
+								"Content-Type": "application/x-www-form-urlencoded"
+							},
+							"body": "grant_type=client_credentials&client_id=74ebfe6d-38e2-4a38-a641-b98ba0139500@8f47ad71-44ca-48bf-afe3-56b9360a4495&client_secret=Q1_RKdZcq3lVBmrY1OE-QLZg.20FpRR-1-&resource=00000003-0000-0ff1-ce00-000000000000/Crayon.onmicrosoft.com.sharepoint.com@8f47ad71-44ca-48bf-afe3-56b9360a4495"
+						}
+					},
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "GetBearerToken",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": true
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "BinarySource",
+								"storeSettings": {
+									"type": "HttpReadSettings",
+									"requestMethod": "GET",
+									"additionalHeaders": {
+										"value": "@{concat('Authorization: Bearer ', activity('GetBearerToken').output.access_token)}",
+										"type": "Expression"
+									},
+									"requestTimeout": ""
+								},
+								"formatSettings": {
+									"type": "BinaryReadSettings"
+								}
+							},
+							"sink": {
+								"type": "BinarySink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "Binary1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Binary2",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Binary1')]",
+				"[concat(variables('factoryId'), '/datasets/Binary2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/XML_to_CSV_AZURE')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "XmlSource",
+								"storeSettings": {
+									"type": "FileServerReadSettings",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "XmlReadSettings",
+									"validationMode": "none",
+									"namespaces": true
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "FileServerWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "[['Cell']['Data']['ss:@Type']"
+										},
+										"sink": {
+											"name": "ss:@Type"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Cell']['Data']['_value_']"
+										},
+										"sink": {
+											"name": "_value_"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Worksheet'][0]['Table']['ss:@ExpandedColumnCount']"
+										},
+										"sink": {
+											"name": "ss:@ExpandedColumnCount"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Worksheet'][0]['Table']['ss:@ExpandedRowCount']"
+										},
+										"sink": {
+											"name": "ss:@ExpandedRowCount"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Worksheet'][0]['Table']['x:@FullColumns']"
+										},
+										"sink": {
+											"name": "x:@FullColumns"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Worksheet'][0]['Table']['x:@FullRows']"
+										},
+										"sink": {
+											"name": "x:@FullRows"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Worksheet'][0]['ss:@Name']"
+										},
+										"sink": {
+											"name": "ss:@Name"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['DocumentProperties']['Author']"
+										},
+										"sink": {
+											"name": "Author"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['DocumentProperties']['LastAuthor']"
+										},
+										"sink": {
+											"name": "LastAuthor"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['DocumentProperties']['Created']"
+										},
+										"sink": {
+											"name": "Created"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['DocumentProperties']['Company']"
+										},
+										"sink": {
+											"name": "Company"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['DocumentProperties']['Version']"
+										},
+										"sink": {
+											"name": "Version"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['ExcelWorkbook']['WindowHeight']"
+										},
+										"sink": {
+											"name": "WindowHeight"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['ExcelWorkbook']['WindowWidth']"
+										},
+										"sink": {
+											"name": "WindowWidth"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['ExcelWorkbook']['WindowTopX']"
+										},
+										"sink": {
+											"name": "WindowTopX"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['ExcelWorkbook']['WindowTopY']"
+										},
+										"sink": {
+											"name": "WindowTopY"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['ExcelWorkbook']['ProtectStructure']"
+										},
+										"sink": {
+											"name": "ProtectStructure"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['ExcelWorkbook']['ProtectWindows']"
+										},
+										"sink": {
+											"name": "ProtectWindows"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Styles']['Style'][0]['Alignment']['ss:@Vertical']"
+										},
+										"sink": {
+											"name": "ss:@Vertical"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Styles']['Style'][0]['Borders']"
+										},
+										"sink": {
+											"name": "Borders"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Styles']['Style'][0]['Font']['x:@CharSet']"
+										},
+										"sink": {
+											"name": "x:@CharSet"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Styles']['Style'][0]['Interior']"
+										},
+										"sink": {
+											"name": "Interior"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Styles']['Style'][0]['NumberFormat']"
+										},
+										"sink": {
+											"name": "NumberFormat"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Styles']['Style'][0]['Protection']"
+										},
+										"sink": {
+											"name": "Protection"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Styles']['Style'][0]['ss:@ID']"
+										},
+										"sink": {
+											"name": "ss:@ID"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Styles']['Style'][0]['ss:@Name']"
+										},
+										"sink": {
+											"name": "ss:@Name"
+										}
+									}
+								],
+								"collectionReference": "$['Workbook']['Worksheet'][0]['Table']['Row']"
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "TO_AZURE",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "CSV_TO_AZURE",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2020-12-07T10:20:34Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/TO_AZURE')]",
+				"[concat(variables('factoryId'), '/datasets/CSV_TO_AZURE')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/XML_to_CSV_SQL_2012')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "XmlSource",
+								"storeSettings": {
+									"type": "FileServerReadSettings",
+									"recursive": true
+								},
+								"formatSettings": {
+									"type": "XmlReadSettings",
+									"validationMode": "none",
+									"namespaces": true
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "FileServerWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "$['Workbook']['DocumentProperties']['Author']"
+										},
+										"sink": {
+											"name": "DocumentPropertiesAuthor",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['DocumentProperties']['LastAuthor']"
+										},
+										"sink": {
+											"name": "DocumentPropertiesLastAuthor",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['DocumentProperties']['Created']"
+										},
+										"sink": {
+											"name": "DocumentPropertiesCreated",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['DocumentProperties']['Company']"
+										},
+										"sink": {
+											"name": "DocumentPropertiesCompany",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['DocumentProperties']['Version']"
+										},
+										"sink": {
+											"name": "DocumentPropertiesVersion",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['ExcelWorkbook']['WindowHeight']"
+										},
+										"sink": {
+											"name": "ExcelWorkbookWindowHeight",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['ExcelWorkbook']['WindowWidth']"
+										},
+										"sink": {
+											"name": "ExcelWorkbookWindowWidth",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['ExcelWorkbook']['WindowTopX']"
+										},
+										"sink": {
+											"name": "ExcelWorkbookWindowTopX",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['ExcelWorkbook']['WindowTopY']"
+										},
+										"sink": {
+											"name": "ExcelWorkbookDocumentPropertiesVersion",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['ExcelWorkbook']['ProtectStructure']"
+										},
+										"sink": {
+											"name": "ExcelWorkbookProtectStructure",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['ExcelWorkbook']['ProtectWindows']"
+										},
+										"sink": {
+											"name": "ProtectWindows",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Styles']['Style'][0]['Alignment']['ss:@Vertical']"
+										},
+										"sink": {
+											"name": "Alignmentss:@Vertical",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Styles']['Style'][0]['Borders']"
+										},
+										"sink": {
+											"name": "StyleBorders",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Styles']['Style'][0]['Font']['x:@CharSet']"
+										},
+										"sink": {
+											"name": "Fontx:@CharSet",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Styles']['Style'][0]['Interior']"
+										},
+										"sink": {
+											"name": "StyleInterior",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Styles']['Style'][0]['NumberFormat']"
+										},
+										"sink": {
+											"name": "StyleNumberFormat",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Styles']['Style'][0]['Protection']"
+										},
+										"sink": {
+											"name": "StyleProtection",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Styles']['Style'][0]['ss:@ID']"
+										},
+										"sink": {
+											"name": "Styless:@ID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Styles']['Style'][0]['ss:@Name']"
+										},
+										"sink": {
+											"name": "Styless:@Name",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Cell']['Data']['ss:@Type']"
+										},
+										"sink": {
+											"name": "Worksheetss:@Type",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Cell']['Data']['_value_']"
+										},
+										"sink": {
+											"name": "Worksheet_value_",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Worksheet'][0]['Table']['ss:@ExpandedColumnCount']"
+										},
+										"sink": {
+											"name": "WorksheetStyless:@Name",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Worksheet'][0]['Table']['ss:@ExpandedRowCount']"
+										},
+										"sink": {
+											"name": "Worksheetss:@ExpandedRowCount",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Worksheet'][0]['Table']['x:@FullColumns']"
+										},
+										"sink": {
+											"name": "Worksheetx:@FullColumns",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Worksheet'][0]['Table']['x:@FullRows']"
+										},
+										"sink": {
+											"name": "Worksheetx:@FullRows",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Workbook']['Worksheet'][0]['ss:@Name']"
+										},
+										"sink": {
+											"name": "Worksheetss:@Name",
+											"type": "String"
+										}
+									}
+								],
+								"collectionReference": "$['Workbook']['Worksheet'][0]['Table']['Row']"
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "TO_SQL_2012",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "CSV_TO_SQL_2012",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": [],
+				"lastPublishTime": "2020-12-07T10:20:34Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/TO_SQL_2012')]",
+				"[concat(variables('factoryId'), '/datasets/CSV_TO_SQL_2012')]"
+			]
+		}
+	]
+}

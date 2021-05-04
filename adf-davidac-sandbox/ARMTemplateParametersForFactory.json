@@ -1,0 +1,45 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-davidac-sandbox"
+		},
+		"DlsGen2Dsasandboxdavid_accountKey": {
+			"value": ""
+		},
+		"HttpServer1_password": {
+			"value": ""
+		},
+		"SharePointOnlineList1_servicePrincipalKey": {
+			"value": ""
+		},
+		"stdavidacsandbox001_connectionString": {
+			"value": ""
+		},
+		"DlsGen2Dsasandboxdavid_properties_typeProperties_url": {
+			"value": "https://dlasandboxdavid.dfs.core.windows.net"
+		},
+		"FileSystemNOOSLC9VH533_properties_typeProperties_host": {
+			"value": "C:\\Users\\davcorre\\"
+		},
+		"FileSystemNOOSLC9VH533_properties_typeProperties_userId": {
+			"value": "david.aas.correia@inmeta.no"
+		},
+		"HttpServer1_properties_typeProperties_url": {
+			"value": "https://crayon.sharepoint.com/:x:/r/sites/azuredatausergroup"
+		},
+		"HttpServer1_properties_typeProperties_userName": {
+			"value": "david.aas.correia@inmeta.no"
+		},
+		"HttpServer2_properties_typeProperties_url": {
+			"value": "https://crayon.sharepoint.com/sites/azuredatausergroup/_api/web/GetFileByServerRelativeUrl('/General/Q&A - Alteryx.pdf)/$value"
+		},
+		"KeyVaultSandbox_properties_typeProperties_baseUrl": {
+			"value": "https://kv-davidac-sandbox.vault.azure.net/"
+		},
+		"SharePointOnlineList1_properties_typeProperties_servicePrincipalId": {
+			"value": "74ebfe6d-38e2-4a38-a641-b98ba0139500"
+		}
+	}
+}
