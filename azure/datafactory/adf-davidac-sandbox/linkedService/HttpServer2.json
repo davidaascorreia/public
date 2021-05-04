@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "HttpServer",
 		"typeProperties": {
-			"url": "https://crayon.sharepoint.com/sites/azuredatausergroup/_api/web/GetFileByServerRelativeUrl('/General/Q&A - Alteryx.pdf)/$value",
+			"url": "https://crayon.sharepoint.com/sites/azuredatausergroup/_api/web/GetFileByServerRelativeUrl('/General/Q&A - Alteryx.pdf')/$value",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous",
 			"authHeaders": {
