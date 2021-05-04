@@ -48,10 +48,6 @@
 						"storeSettings": {
 							"type": "HttpReadSettings",
 							"requestMethod": "GET",
-							"additionalHeaders": {
-								"value": "@{concat('Authorization: Bearer ', activity('GetBearerToken').output.access_token)}",
-								"type": "Expression"
-							},
 							"requestTimeout": ""
 						},
 						"formatSettings": {
