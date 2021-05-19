@@ -1,15 +1,24 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {},
+    "parameters": {
+        "storageName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 24,
+            "metadata": {
+                "description": "The name of the Azure storage resource."
+            }
+        }
+    },
     "functions": [],
     "variables": {},
     "resources": [{
-        "name": "davidacarmdemo",
+        "name": "[parameters('storageName')]",
         "type": "Microsoft.Storage/storageAccounts",
         "apiVersion": "2019-06-01",
         "tags": {
-            "displayName": "davidacarmdemo"
+            "displayName": "[parameters('storageName')]"
         },
         "location": "[resourceGroup().location]",
         "kind": "StorageV2",
