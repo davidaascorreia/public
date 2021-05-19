@@ -38,9 +38,24 @@ Steps:
    `DeploymentName="addSkuparameter-"$today` <br>
    `az deployment group create --name $DeploymentName --template-file $templateFile --parameters storageSKU=Standard_GRS storageName=<your unique name>`
  16. Add outputs with *arm-output* to *azuredeploy.json*. Change "output1" to "storageEndpoint", change the value of type to "object", and change the value of value to "[reference(parameters('storageName')).primaryEndpoints]".
- 17. Save file and deploy.
+ 17. Save file and deploy. <br>
    `templateFile="azuredeploy.json"` <br>
    `today=$(date +"%d-%b-%Y")` <br>
    `DeploymentName="addoutputs-"$today` <br>
    `az deployment group create --name $DeploymentName --template-file $templateFile --parameters storageSKU=Standard_LRS storageName=<your unique name>`
  18. Change the parameter *storageName* to *storagePrefix*. Change *maxLength* to 11. Change *name* and *displayName* to `"[toLower(concat(parameters('storagePrefix'),uniqueString(resourceGroup().id)))]"`
+ 19. Save and deploy the following: <br>
+   `templateFile="azuredeploy.json"` <br>
+   `today=$(date +"%d-%b-%Y")` <br>
+   `DeploymentName="addfunction-"$today` <br>
+   `az deployment group create --name $DeploymentName --template-file $templateFile --parameters storagePrefix=<your unique name>`
+ 20. Add new variable uniqueStorageName and use the value `"[toLower(concat(parameters('storagePrefix'),uniqueString(resourceGroup().id)))]"` <br>
+   `templateFile="azuredeploy.json"` <br>
+   `today=$(date +"%d-%b-%Y")` <br>
+   `DeploymentName="addvariable-"$today` <br>
+   `az deployment group create --name $DeploymentName --template-file $templateFile --parameters storagePrefix=<your unique name>`
+ 21. Create an *object* parameter *resourceTags* with environment `dev` and project `usergroup` <br>
+   `templateFile="azuredeploy.json"` <br>
+   `today=$(date +"%d-%b-%Y")` <br>
+   `DeploymentName="updateTags-"$today` <br>
+   `az deployment group create --name $DeploymentName --template-file $templateFile --parameters storagePrefix=<your unique name>`

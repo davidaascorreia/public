@@ -28,34 +28,26 @@
                 "description": "This is the allowed values for an Azure storage account."
             }
         },
-        // This is the allowed values for an Azure storage account
-        "storageSKU": {
-            "type": "string",
-            "defaultValue": "Standard_LRS",
-            "allowedValues": [
-                "Standard_LRS",
-                "Standard_GRS",
-                "Standard_RAGRS",
-                "Standard_ZRS",
-                "Premium_LRS",
-                "Premium_ZRS",
-                "Standard_GZRS",
-                "Standard_RAGZRS"
-            ],
+        "resourceTags": {
+            "type": "object",
+            "defaultValue": {
+                "Environment": "dev",
+                "Project": "usergroup"
+            },
             "metadata": {
-                "description": "This is the allowed values for an Azure storage account."
+                "description": "These are the resource tags assigned in deployment."
             }
         }
     },
     "functions": [],
-    "variables": {},
+    "variables": {
+        "uniqueStorageName": "[toLower(concat(parameters('storagePrefix'),uniqueString(resourceGroup().id)))]"
+    },
     "resources": [{
-        "name": "[toLower(concat(parameters('storagePrefix'),uniqueString(resourceGroup().id)))]",
+        "name": "[variables('uniqueStorageName')]",
         "type": "Microsoft.Storage/storageAccounts",
         "apiVersion": "2019-06-01",
-        "tags": {
-            "displayName": "[toLower(concat(parameters('storagePrefix'),uniqueString(resourceGroup().id)))]"
-        },
+        "tags": "[parameters('resourceTags')]",
         "location": "[resourceGroup().location]",
         "kind": "StorageV2",
         "sku": {
