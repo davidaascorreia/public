@@ -12,10 +12,7 @@ Steps:
  5. Set default resource group name
     `az configure --defaults group=[sandbox resource group name]`
  6. Run this command to deploy your blank template
-   `templateFile="azuredeploy.json"
-   today=$(date +"%d-%b-%Y")
-   DeploymentName="blanktemplate-"$today
-
-   az group deployment create \
-   --name $DeploymentName \
-   --template-file $templateFile`
+   `templateFile="azuredeploy.json"` <br>
+   `today=$(date +"%d-%b-%Y")` <br>
+   `DeploymentName="blanktemplate-"$today` <br>
+   `az group deployment create --name $DeploymentName --template-file $templateFile`
