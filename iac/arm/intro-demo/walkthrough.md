@@ -32,4 +32,15 @@ Steps:
    `az deployment group create --name $DeploymentName --template-file $templateFile --parameters storageName=<your unique name>`
  13. Add another parameter *storageSKU* to limit allowed values. Set default value "Standard_LRS" and following allowed values: Standard_LRS, Standard_GRS, Standard_RAGRS, Standard_ZRS, Premium_LRS, Premium_ZRS, Standard_GZRS, Standard_RAGZRS
  14. Add comments and description "This is the allowed values for an Azure storage account"
- 15. Save file. Deploy testing both allowed and not allowed values.
+ 15. Save file. Deploy testing both allowed and not allowed values. <br>
+   `templateFile="azuredeploy.json"` <br>
+   `today=$(date +"%d-%b-%Y")` <br>
+   `DeploymentName="addSkuparameter-"$today` <br>
+   `az deployment group create --name $DeploymentName --template-file $templateFile --parameters storageSKU=Standard_GRS storageName=<your unique name>`
+ 16. Add outputs with *arm-output* to *azuredeploy.json*. Change "output1" to "storageEndpoint", change the value of type to "object", and change the value of value to "[reference(parameters('storageName')).primaryEndpoints]".
+ 17. Save file and deploy.
+   `templateFile="azuredeploy.json"` <br>
+   `today=$(date +"%d-%b-%Y")` <br>
+   `DeploymentName="addoutputs-"$today` <br>
+   `az deployment group create --name $DeploymentName --template-file $templateFile --parameters storageSKU=Standard_LRS storageName=<your unique name>`
+ 18. Change the parameter *storageName* to *storagePrefix*. Change *maxLength* to 11. Change *name* and *displayName* to `"[toLower(concat(parameters('storagePrefix'),uniqueString(resourceGroup().id)))]"`

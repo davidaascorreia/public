@@ -2,12 +2,12 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "storageName": {
+        "storagePrefix": {
             "type": "string",
             "minLength": 3,
-            "maxLength": 24,
+            "maxLength": 11,
             "metadata": {
-                "description": "The name of the Azure storage resource."
+                "description": "The prefix of the Azure storage resource."
             }
         },
         // This is the allowed values for an Azure storage account
@@ -32,11 +32,11 @@
     "functions": [],
     "variables": {},
     "resources": [{
-        "name": "[parameters('storageName')]",
+        "name": "[toLower(concat(parameters('storagePrefix'),uniqueString(resourceGroup().id)))]",
         "type": "Microsoft.Storage/storageAccounts",
         "apiVersion": "2019-06-01",
         "tags": {
-            "displayName": "[parameters('storageName')]"
+            "displayName": "[toLower(concat(parameters('storagePrefix'),uniqueString(resourceGroup().id)))]"
         },
         "location": "[resourceGroup().location]",
         "kind": "StorageV2",
