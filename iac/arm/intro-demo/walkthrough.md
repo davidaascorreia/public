@@ -1,6 +1,6 @@
 This is a walkthrough document for a simple IAC demo. <br/>
 
-Azure CLI
+Use Visual Studio Code with extension Azure Resource Manager (ARM) Tools. Language used is Azure CLI.
 
 Steps:
  1. Login into Azure account
